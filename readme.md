@@ -1,8 +1,25 @@
 # Hasty
 
-Hasty is a fast, simple, self-contained starter for building a low-JS Shopify store.
+Hasty is a simple, low-JS, transferable starter for building a Shopify store.
 
-Because Shopify stores can change hands between developers quite a bit, Hasty is built to contain all the build files within Shopify's assets folder. When a new developer picks up a Hasty-built project, they can just download the theme directly from the store, run the below commands to compile the JS and CSS, and they're off to the races.
+Why use Hasty?
+
+1. Scores 100 on Google Pagespeed Insights.
+2. Built to contain all the build files within Shopify's assets folder – so when a new developer picks up a Hasty-built project, they can download the theme directly from the store, run the below commands to compile the JS and CSS, and make changes to the site. No need to transfer repos.
+3. Uses TailwindCSS (:raised_hands:), and has responsive skeletons built for most of Shopify's templates.
+
+This is very much a work-in-progress. Here are a few things on my to-do list:
+
+- [ ] Custom note option on product
+- [ ] Custom note option on cart
+- [ ] Contact form
+- [ ] Gift card
+- [ ] Modal
+- [ ] Quickview
+- [ ] AJAX cart
+- [ ] ADA compliance
+
+I'm still on the fence about the JS setup, so that may change slightly.
 
 ## Commands
 
