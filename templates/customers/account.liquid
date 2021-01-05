@@ -1,0 +1,176 @@
+<div class='container'>
+        
+    <div class='w-full flex flex-wrap'>
+        <div class='md:w-1/4 w-full md:pr-4'>
+            {% include 'account-navigation' %}
+        </div>
+        <div class='md:w-3/4 w-full'>
+
+            <div class='block mb-10'>
+                <h1 class='title'>My Account</h1>
+            </div>
+
+            {% paginate customer.orders by 99 %}
+    
+                {% if customer.orders.size != 0 %}
+
+                    <div class='w-full block'>
+                        
+                        {% for order in customer.orders %}
+                            <div class='py-8 border-b border-light-gray {% if forloop.first %}md:border-t{% endif %}'>
+
+                                <div class='w-full flex flex-col md:flex-row flex-wrap'>
+
+                                    <div class='md:w-1/4 w-full'>
+                                        {{ order.created_at | date: '%b %d, %Y' }}
+                                    </div>
+
+                                    <div class='md:w-1/4 w-full'>
+                                        Order #{{ order.order_number }}
+                                    </div>
+
+                                    <div class='md:w-1/4 w-full flex flex-wrap'>
+                                        <div class='md:w-1/2 w-full'>
+                                            {{ order.total_price | money }}
+                                        </div>
+    
+                                        <div class='md:w-1/2 w-full {% if order.fulfillment_status == 'unfulfilled' %}text-gray{% endif %}'>
+                                            {{ order.fulfillment_status }}
+                                        </div>
+                                    </div>
+
+                                    <div class='md:w-1/4 md:text-right  w-full'>
+                                        <a href='{{ order.order_status_url }}' target='_blank' class='underline text-gray'>View Tracking</a>
+                                    </div>
+
+                                </div>
+
+                                <div class='pt-8'>
+                                    <div class='flex items-center cursor-pointer js-trigger-details'><span class='pr-2'>Order Details</span> <span class='w-3 details-icon transition duration-300'>{% include 'arrow-down' %}</span></div>
+
+                                    <div class='hidden details'>
+                                        <div class='w-full block py-8'>
+                                            <div class='grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-4'>
+                                                {% assign permalink = '/cart/' %}
+                                                {% for line_item in order.line_items %}
+
+                                                    {% assign line_item_permalink = line_item.variant.id | append: ':' | append: line_item.quantity %}
+
+                                                    {% if forloop.last %}
+                                                    {% else %}
+                                                        {% assign line_item_permalink = line_item_permalink | append: ',' %}
+                                                    {% endif %}
+
+                                                    {% assign permalink = permalink | append: line_item_permalink %}
+                                                    
+                                                    <div class='flex w-full'>
+                                                        <div class='w-1/3'>
+                                                            <div class='w-full pt-100 relative'>
+                                                                <img src="{{ line_item.image | img_url: '400x' }}" class="absolute inset-0 w-full h-full object-cover" />
+                                                            </div>
+                                                        </div>
+                                                        <div class='w-2/3 pl-4 text-sm'>
+                                                            <div class='block mb-4'>
+                                                                <div class='leading-snug'>{{ line_item.product.title }}</div>
+                                                                <div class='text-gray text-xs mb-1'>{{ line_item.variant.title }}</div>
+                                                                <div>{{ line_item.price | money }}</div>
+                                                                <div>QTY: {{ line_item.quantity }}</div>
+                                                            </div>
+                                                            <div class='md:hidden'>
+                                                                <a class='text-gray underline' href=''>Write a review</a>
+                                                            </div>
+                                                            <div class='hidden md:block'>
+                                                                <a class='text-gray underline' href=''>Write a Review & Earn Reward Points</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+
+
+                                        <div class='block pb-8'>
+                                            <a href='{{ permalink }}' target="_blank" class='btn hover:bg-gray-300 text-sm lg:text-base inline-block px-12'>Add all to bag</a>
+                                        </div>
+
+                                        <div class='block'>
+                                            <div class='block mb-4 bold'>
+                                                Shipped To
+                                            </div>
+                                            <div class='w-full grid md:grid-cols-2 gap-x-4 gap-y-4'>
+                                                <div class='pr-4'>
+                                                    <div>
+                                                        <div>{{ order.shipping_address.address1 }}</div>
+                                                        <div>{{ order.shipping_address.address2 }}</div>
+                                                        <div>{{ order.shipping_address.city }}, {{ order.shipping_address.province }} {{ order.shipping_address.zip }}</div>
+                                                        <div>{{ order.shipping_address.country }}</div>
+                                                        <div>{{ order.shipping_address.phone }}</div>
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                    <div class='block mb-4'>
+                                                        <div class='flex justify-between'>
+                                                            <div>
+                                                                Subtotal
+                                                            </div>
+                                                            <div>
+                                                                {{ order.subtotal_price | money }}
+                                                            </div>
+                                                        </div>
+                                                        <div class='flex justify-between'>
+                                                            <div>
+                                                                Tax
+                                                            </div>
+                                                            <div>
+                                                                {{ order.tax_price | money }}
+                                                            </div>
+                                                        </div>
+                                                        <div class='flex justify-between'>
+                                                            <div>
+                                                                Shipping
+                                                            </div>
+                                                            <div>
+                                                                {{ order.shipping_price | money }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div class='flex justify-between font-semibold'>
+                                                            <div>
+                                                                Total
+                                                            </div>
+                                                            <div>
+                                                                {{ order.total_price | money }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        {% endfor %}
+
+                    </div>
+    
+                    
+                {% else %}
+                    <p class='align-c px2 bg-cg1'>You don't have any orders yet!</p>
+                {% endif %}
+    
+                <div class="pagination">
+                    {{ paginate | default_pagination }}
+                </div>
+                    
+            {% endpaginate %}                
+
+        </div>
+    </div>
+    
+  
+</div>

@@ -1,0 +1,27 @@
+<div class='address {{ className }}'>
+
+    <div class='block mb-4'>
+      {% if default %}
+        <span>Default</span>
+      {% else %}
+        <span>&nbsp;</span>
+      {% endif %}
+    </div>
+  
+    <div class='block mb-4'>
+      <div>{{ address.name }}</div>
+      {% if address.company %}{{ address.company }}<br />{% endif %}
+      {{ address.street }}<br />
+      {{ address.city }}{% if address.province %}, {{ address.province }} {% endif %} {{ address.zip | upcase }}<br />
+      {{ address.country }}<br />
+      {% if address.phone != '' %}{{ address.phone }}{% endif %}
+    </div>
+  
+    {% if edit %}
+      <div class='address__footer text-xs flex flex-wrap'>
+        <button class='button--reset mr-2 mb-2 uppercase tracking-2px text-gray underline' onclick='toggleForm({{ address.id }})'>Edit</button>
+        <button class='button--reset mb-2 uppercase tracking-2px text-gray underline' onclick='removeAddress({ {address.id }})'>Delete</button>
+      </div>
+    {% endif %}
+  </div>
+  

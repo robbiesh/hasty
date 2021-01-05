@@ -1,0 +1,112 @@
+<div class='container'>
+
+    <div class='w-full flex flex-wrap'>
+        <div class='md:w-1/4 w-full md:pr-4'>
+            {% include 'account-navigation' %}
+        </div>
+        <div class='md:w-3/4 w-full'>
+
+            <div class='block pb-8'>
+                <h2 class='title'>My Account</h2>
+            </div>
+
+            <div class='grid grid-cols-2 md:grid-cols-4 gap-y-8 md:gap-x-16 gap-x-8 mb-8'>
+                {% if customer.first_name != blank %}
+                <div>
+                    {{ customer.first_name }} {{ customer.last_name}}
+                </div>
+                {% endif %}
+                <div>
+                    {{ customer.email }}
+                </div>
+            </div>
+
+            <div class='mb-8'>
+                {% form 'recover_customer_password' %}
+                    <input type='email' name='email' placeholder='Email' value='{{ customer.email }}' style='display: none' />
+                    <button type='submit' class='underline text-sm'>Change password</button>
+                {% endform %}
+            </div>
+
+            <hr>
+
+            <div class='block py-8'>
+                <h2 class='title'>Addresses</h2>
+            </div>
+
+            {% paginate customer.addresses by 100 %}
+
+            {% if customer.addresses == empty %}
+                <div class='block'>You have no saved address.</div>
+            {% else %}
+                <div class='grid grid-cols-2 md:grid-cols-4 gap-y-8 md:gap-x-16 gap-x-8'>
+
+                    {% for address in customer.addresses %}
+                        
+                        {% if customer.default_address == address %}
+                            {% assign default_address = true %}
+                        {% else %}
+                            {% assign default_address = false %}
+                        {% endif %}
+                        
+                        <div>
+                            
+                            {%
+                                include 'account-address' with
+                                address: address,
+                                default: default_address,
+                                edit: true
+                            %}
+    
+                        </div>
+
+                    {% endfor %}                
+                </div>
+
+                <div class='block'>
+                    {% for address in customer.addresses %}
+
+                        <div class='block w-full'>
+                            {%
+                                include 'account-address-form' with
+                                id: address.id,
+                                action: address,
+                                title: 'Edit Address',
+                                cta: 'Update Address',
+                                formClassName: 'is-edit-form mt-8'
+                            %}
+                        </div>
+
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% if paginate.pages > 1 %}
+            <div class='w-full flex justify-center pt-10 pagination'>
+                {{ paginate | default_pagination }}
+            </div>
+            {% endif %}
+
+
+            <div class='block my-8'>
+
+                <div class='mb-8 block'>
+                    <button class='underline text-sm' onclick='toggleNewForm()'>Add new address</button>
+                </div>
+
+                {%
+                    include 'account-address-form' with
+                    id: 'new',
+                    action: customer.new_address,
+                    title: 'Add New Address',
+                    cta: 'Add Address',
+                    formClassName: ''
+                %}
+                
+            </div>
+
+            {% endpaginate %}
+
+        </div>
+    </div>
+</div>

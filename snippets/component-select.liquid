@@ -1,0 +1,20 @@
+<div class='block {{ class }}'>
+  <label for='{{id}}_{{ label | handleize }}'>{{ label }}</label>
+  <select
+    id='{{id}}_{{ label | handleize }}'
+    name='{{ name | default: label | strip }}'
+    class='input {{ class }}'
+    value='{{ value }}'
+    {{ attributes }}
+    {% if required %}required{% endif %}>
+    {{ options }}
+  </select>
+</div>
+
+{% assign label = blank %}
+{% assign name = blank %}
+{% assign class = blank %}
+{% assign required = blank %}
+{% assign value = blank %}
+{% assign options = blank %}
+{% assign attributes = blank %}

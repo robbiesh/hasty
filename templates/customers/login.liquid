@@ -1,0 +1,97 @@
+<div class='container '>
+
+    <div class='md:w-1/2 w-full block mx-auto'>
+        
+            <div class='block mb-10'>
+                <h1 class='title'>Account Login</h1>
+            </div>
+
+            {% form 'customer_login' %}
+
+                <div class='block mb-2'>
+                    <input type='email' name='customer[email]' placeholder='Email' class='input' />
+                </div>
+
+                <div class='block mb-2'>
+                    <input type='password' name='customer[password]' placeholder='Password' class='input' />
+                </div>
+
+                <div class='block mb-6'>
+                    <a class='js-recover-trigger text-sm' href='#recover'>Forgot password?</a><br />
+                </div>  
+        
+                {% if form.errors %}
+                    {% for field in form.errors %}
+                        <div class='mb-6 p-4 bg-red-100'>
+                            {% if field == 'form' %}
+                                <p class=''>{{ form.errors.messages[field] }}</p>
+                            {% else %}
+                                <p class=''>{{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}</p>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                
+                <div class='mb-6'>
+                    <button type='submit' class='btn hover:bg-gray-300'>Sign In</button>
+                </div>
+
+                <div class='block text-center text-sm'>
+                    <a class='underline' href='/account/register'>Create an account</a>
+                </div>
+
+            {% endform %}
+
+
+                
+            <div class='hidden js-recover'>
+
+                <div class='p-4 absolute top-0 right-0 js-recover-cancel text-sm'>
+                    Close
+                </div>
+
+                <h2 class='block mb-2 text-30px  tracking-1px leading-tighter'>Forgot your password?</h2>
+                <p class='mb-6 block leading-tight text-sm'>Enter your email and we will send you a password reset link.</p>
+            
+                {% form 'recover_customer_password' %}
+            
+                    {% if form.posted_successfully? %}
+                        <div class='mb-2 mb-2 border border-light-gray p-4'>
+                            <span class='mb1 js-recover-success'>Success! Check your email for a link to reset your password.</span>
+                        </div>
+                    {% else %}
+                        <div class='mb-6'>
+                            <input type='email' name='email' placeholder='Email' class='border border-light-gray border-solid p-3 w-full' />
+                        </div>
+            
+                        {% if form.errors %}
+                            {% for field in form.errors %}
+                            {% if field == 'form' %}
+                                <div class='mb-6'>
+                                    <p class=''>{{ form.errors.messages[field] }}</p>
+                                </div>
+                            {% else %}
+                                <div class='mb-6'>
+                                    <p class=''>{{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}.</p>
+                                </div>
+                            {% endif %}
+                            {% endfor %}
+                        {% endif %}
+            
+                        <div>
+                            <button type='submit' class='bg-white font-medium uppercase tracking-2px text-sm border border-solid  w-full p-4 text-center'>Reset password</button>
+                        </div>
+
+                    {% endif %}
+            
+                {% endform %}
+            
+            </div>
+                
+
+        
+    </div>
+  
+  </section>
+  

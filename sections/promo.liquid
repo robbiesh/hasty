@@ -1,0 +1,23 @@
+<div class='w-full bg-black md:text-center py-3 md:px-8 px-4 leading-5'>
+    
+    {% if section.settings.title != blank %}
+        <div>
+        <a href='' class='text-white text-sm'>{{ section.settings.title }}</a>
+        </div>
+    {% endif %}
+    
+  </div>
+
+{% schema %}
+    {
+        "name": "Promo",
+        "class": "relative",
+        "settings": [
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Promo"
+            }
+        ]
+    }
+{% endschema %}

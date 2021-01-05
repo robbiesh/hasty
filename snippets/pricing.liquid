@@ -1,0 +1,28 @@
+{% if prod.available %}
+
+    {% capture compare %}
+        {% if prod.compare_at_price %}
+            {% if prod.compare_at_price_varies %}
+                <span class='pl-2 line-through'>{{ prod.compare_at_price_min | money }} - {{ prod.compare_at_price_max | money }}</span>
+            {% else %}
+                <span class='pl-2 line-through'>{{ prod.compare_at_price | money }}</span>
+            {% endif %}
+        {% endif %}
+    {% endcapture %}
+
+    <div>
+        <span class='text-red-500'>
+            {% if prod.price_varies %}
+                {{ prod.price_min | money }} - {{ prod.price_max | money }}</span>
+            {% else %}
+                <span>{{ prod.price | money }}</span>
+            {% endif %}
+        </span>
+        {{ compare }}
+    </div>
+
+{% else %}
+
+    <div>Sold out!<br><a href='' class='underline'>Enter your email here</a> to get notified when we're back in stock.</div>
+
+{% endif %}

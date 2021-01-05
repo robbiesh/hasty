@@ -1,0 +1,144 @@
+<div id='form_{{id}}' class='account-address__form x rel {{formClassName}}' style='display: none'>
+    {% form 'customer_address', action %}
+
+      {% assign form_suffix = '_' | append: id %}
+      {% assign form_country_id = 'country' | append: form_suffix %}
+      {% assign form_province_container_id = 'provinceContainer' | append: form_suffix %}
+      {% assign form_province_id = 'province' | append: form_suffix %}
+
+      <div data-address='root' data-id='{{ id }}' class='block mb-4'>
+  
+        {%
+        include 'component-input' with
+        label: 'First name'
+        placeholder: 'First name',
+        name: 'address[first_name]',
+        value: form.first_name,
+        type: 'text',
+        class: 'mb-2',
+        id: id
+        %}
+      
+        {%
+        include 'component-input' with
+        label: 'Last name',
+        placeholder: 'Last name',
+        name: 'address[last_name]',
+        value: form.last_name,
+        class: 'mb-2',
+        id: id
+        %}
+      
+        {%
+        include 'component-input' with
+        label: 'Company',
+        placeholder: 'Company',
+        name: 'address[company]',
+        value: form.company,
+        class: 'mb-2',
+        id: id
+        %}
+      
+        {%
+        include 'component-input' with
+        label: 'Phone',
+        placeholder: 'Phone',
+        name: 'address[phone]',
+        value: form.phone,
+        type: 'tel',
+        class: 'mb-2',
+        id: id
+        %}
+      
+        {%
+        include 'component-input' with
+        label: 'Address',
+        placeholder: 'Address',
+        name: 'address[address1]',
+        value: form.address1,
+        class: 'mb-2',
+        id: id
+        %}
+      
+        {%
+        include 'component-input' with
+        label: 'Apt/Suite number',
+        placeholder: 'Apt/Suite number',
+        name: 'address[address2]',
+        value: form.address2,
+        class: 'mb-2',
+        id: id
+        %}
+      
+        {%
+        include 'component-input' with
+        label: 'City',
+        placeholder: 'City',
+        name: 'address[city]',
+        value: form.city,
+        class: 'mb-2',
+        id: id
+        %}
+      
+        {%
+        include 'component-input' with
+        label: 'Zip',
+        placeholder: 'Zip',
+        name: 'address[zip]',
+        value: form.zip,
+        class: 'mb-2',
+        id: id
+        %}
+      
+      
+        
+        {%- capture attr -%}
+          data-default="US"
+        {%- endcapture -%}
+        
+
+        {%
+        include 'component-select' with
+        label: 'Country',
+        class: 'select-country mb-2',
+        name: 'address[country]',
+        placeholder: 'Country',
+        options: country_option_tags,
+        attributes: attr,
+        id: id
+        %}
+      
+
+        
+        {%- capture attr -%}
+          data-default="NY"
+        {%- endcapture -%}
+        
+
+        {%
+        include 'component-select' with
+        label: 'Province',
+        class: 'select-province',
+        name: 'address[province]',
+        placeholder: 'Province',
+        options: '',
+        attributes: attr,
+        id: id
+        %}
+        
+      </div>
+    
+      <div class='block'>
+        <label for='address_default_address{{form_suffix}}' class='block mb-8'>
+          {{ form.set_as_default_checkbox }}
+          <span class='ml-2 inline-block'>Set as default address</span>
+        </label>
+    
+        <div>
+          <button type='submit' class='btn'>{{ cta }}</button>
+        </div>
+      </div>
+
+    {% endform %}
+  
+  </div>

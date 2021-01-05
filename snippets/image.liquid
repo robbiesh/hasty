@@ -1,0 +1,19 @@
+<picture>
+    <source srcset="{{ image_mobile }}" media="(max-width: 767px)">
+    <source srcset="{{ image }}" media="(min-width: 768px)">
+    <img loading="lazy" src="{{ image }}" class='w-full h-full object-cover inset-0 absolute' alt='' />
+</picture>
+
+{% if image_hover != blank %}
+    <picture>
+        <source srcset="{{ image_hover_mobile }}" media="(max-width: 767px)">
+        <source srcset="{{ image_hover }}" media="(min-width: 768px)">
+        <img loading="lazy" src="{{ image_hover }}" class='w-full h-full object-cover inset-0 absolute opacity-0 hover:opacity-100 transition duration-300' alt='' />
+    </picture>
+{% endif %}
+
+{% assign image = '' %}
+{% assign image_mobile = '' %}
+
+{% assign image_hover = '' %}
+{% assign image_hover_mobile = '' %}

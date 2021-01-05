@@ -1,0 +1,81 @@
+<section>
+
+    <div class='js-banner'>
+    
+        {% for block in section.blocks %}
+
+            <div class='w-full relative h-0 pt-50'>
+
+                {% if block.settings.image_mobile != blank %}
+                    {% assign image_mobile = block.settings.image_mobile | img_url: '1000x' %}
+                {% else %}
+                    {% assign image_mobile = block.settings.image | img_url: '1000x' %}
+                {% endif %}
+
+                {% assign image = block.settings.image | img_url: '1000x' %}
+
+                {% include 'image', image, image_mobile %}
+
+                <div class='absolute left-1/2 transform py-20 w-full container px-4 {% if block.settings.alignment == 'bottom' %}bottom-0{% else %}-translate-y-1/2 top-1/2{% endif %} -translate-x-1/2 text-center z-10 px-4 w-full'>
+
+                    <div class='mb-4'>
+                        <h1 class='text-30px md:text-65px tracking-1px md:tracking-1_5px leading-tighter'>{{ block.settings.title }}</h1>
+                    </div>
+                    <div>
+                        <a href='{{ block.settings.cta_url }}' class='text-sm md:text-lg {{ block.settings.text_color }} uppercase tracking-3px underline'>{{ block.settings.cta_text }}</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        {% endfor %}
+        
+    </div>
+
+</section>
+  
+
+{% schema %}
+    {
+      "name": "Banner",
+      "blocks": [
+        {
+            "type": "banner_item",
+            "name": "Banner Item",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image_mobile",
+                    "label": "Image - Mobile"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Title"
+                },
+                {
+                    "type": "text",
+                    "id": "cta_text",
+                    "label": "CTA - Text"
+                },
+                {
+                    "type": "url",
+                    "id": "cta_url",
+                    "label": "CTA - URL"
+                }
+            ]
+        }
+      ],
+      "presets": [
+        {
+          "name": "Banner"
+        }
+      ]
+    }
+  {% endschema %}

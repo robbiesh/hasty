@@ -1,0 +1,11 @@
+<script type='text/javascript' src='{{ "global.js" | asset_url }}' defer></script>
+
+{% if template == 'collection' %}
+    <script type='text/javascript' src='{{ "collection.min.js" | asset_url }}' defer></script>
+{% elsif template == 'product' %}
+    <script type='text/javascript' src='{{ "product.min.js" | asset_url }}' defer></script>
+{% elsif template == 'customers/account' %}
+    <script type='text/javascript' src='{{ "account.min.js" | asset_url }}' defer></script>
+{% elsif template == 'customers/addresses' %}
+    <script type='text/javascript' src='{{ "addresses.min.js" | asset_url }}' defer></script>
+{% endif %}

@@ -1,0 +1,160 @@
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+<div class=''>
+  <div class='container'>
+
+    <div class='flex flex-wrap'>
+
+      <div class='w-full md:w-2/3'>
+
+        <div class='grid w-full grid-cols-2 gap-x-2 gap-y-2 w-full'>
+          {% for image in product.images %}
+
+            {% if image.attached_to_variant? %}
+              {% assign variant_image = image.id %}
+            {% endif %}
+
+            <div class='w-full pt-100 relative js-image' data-image='{{ variant_image }}' {% if variant_image != current_variant.image.id %}style='display:none;'{% endif %}>
+              <img src="{{ image.src | img_url: '800x' }}" alt="{{ image.alt | escape }}" class='w-full h-full inset-0 absolute object-cover' loading='lazy'>
+            </div>
+          {% endfor %}
+
+          {% assign variant_image = '' %}
+        </div>
+
+      </div>
+
+      <div class='w-full md:w-1/3 lg:px-8 lg:py-0 py-8'>
+
+        <div class='block mb-4'>
+          <h1 class='title'>{{ product.title }}</h1>
+        </div>
+
+        <div class='block mb-4'>
+          <h2 class='js-variant-price'>{{ current_variant.price | money_without_trailing_zeros }}</h2>
+        </div>
+
+        <div class='mb-4'>{{ product.description }}</div>
+
+        {% if product.available %}
+
+        <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
+
+          <div class='block w-full mb-4'>
+
+            {% unless product.has_only_default_variant %}
+              {% for option in product.options_with_values %}
+
+                <div class='font-bold mb-1'>{{ option.name }}</div>
+
+                <div class='block mb-4'>
+                  
+                  {% for value in option.values %}
+
+                      {% if value == option.selected_value %}
+                        {% assign checked = true %}
+                      {% else %}
+                        {% assign checked = false %}
+                      {% endif %}
+                      
+                      
+                      {%
+                        include 'component-radio' with
+                        label: value,
+                        value: value,
+                        name: option.name,
+                        checked: checked,
+                        attributes: 'data-option-radio'
+                      %}
+                  {% endfor %}
+                  
+                  {% comment %}
+                  {%- capture options -%}
+                    {% for value in option.values %}
+                      <option value='{{ value }}' {% if option.selected_value == value %}selected{% endif %}>
+                        {{ value }}
+                      </option>
+                    {% endfor %}
+                  {%- endcapture -%}
+
+                  {%
+                    include 'component-select' with
+                    label: option.name,
+                    name: option.name,
+                    attributes: 'data-option-select'
+                    options: options
+                  %}
+                  {% endcomment %}
+
+                </div>
+                
+              {% endfor %}
+            {% endunless %}
+
+          </div>
+
+          
+          <div class='hidden'>
+            <select name="id" class='py-4 w-full js-variants' data-option-main>
+              {% for variant in product.variants %}
+                <option value="{{ variant.id }}" {% if current_variant.id == variant.id %}selected{% endif %}>
+                  {{ variant.title }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class='block w-full'>
+            <div class='flex items-center justify-between mb-4 w-full'>
+              <label for="Quantity" class=>Quantity</label>
+              <input class='text-center p-2 lg:p-4 border w-20 max-w-100' type="number" id="Quantity" name="quantity" value="1" min="1">
+            </div>
+          </div>
+
+
+          <button type="submit" name="add" class='btn text-sm lg:text-base hover:bg-gray-300 w-full js-add-to-cart'>Add to cart</button>
+
+          <div class='js-sold-out' style='display: none'>
+            <div>Sold out!<br><a href='' class='underline'>Enter your email here</a> to get notified when we're back in stock.</div>
+          </div>
+
+        </form>
+
+        {% else %}
+
+        <div>
+          <div>Sold out!<br><a href='' class='underline'>Enter your email here</a> to get notified when we're back in stock.</div>
+        </div>
+
+        {% endif %}
+
+      </div>
+
+    </div>
+  
+  </div>
+</div>
+
+{% capture 'json' %}
+{
+{% for v in product.variants %}
+  "{{ v.title }}": {
+    "id": "{{ v.id | json }}",
+    "available": "{{ v.available }}",
+    "image": "{{ v.image.id }}",
+    "price": "{{ v.price | money_without_trailing_zeros }}"
+  }
+{% if forloop.last %}{% else %},{% endif %}
+{% endfor %}
+}
+{% endcapture %}
+
+<script class='js-variants-json' type='application/json'>
+  {{- json | strip -}}
+</script>
+
+<script type='text/javascript'>
+
+  
+
+</script>

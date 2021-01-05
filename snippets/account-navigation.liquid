@@ -1,0 +1,17 @@
+<div class='overflow-x-scroll md:overflow-x-auto'>
+    <ul class='block pb-8 lg:py-0'>
+        <li class='{% if template == "customers/account" %}font-bold{% endif %} mb-2'>
+            <a href='/account'>
+                <span>Order History</span>
+            </a>
+        </li>
+        <li class='{% if template == "customers/addresses" %}font-bold{% endif %} mb-2'>
+            <a href='/account/addresses'>
+                <span>Account Details</span>
+            </a>
+        </li>
+        <li class=''>
+            <a href='/account/logout'>Sign Out</a>
+        </li>
+    </ul>
+</div>

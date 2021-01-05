@@ -1,0 +1,20 @@
+<div class='radio-item'>
+    <input
+      id='{{ value | handleize  }}'
+      type='radio'
+      name='{{name}}'
+      value='{{value}}'
+      {{ attributes }}
+      {% if checked %}checked{% endif %}
+    />
+    <label class='label cursor-pointer' for='{{ value | handleize }}'>
+        {{ label }}
+    </label>
+  </div>
+  
+  {% assign label = blank %}
+  {% assign name = blank %}
+  {% assign value = blank %}
+  {% assign attributes = blank %}
+  {% assign checked = blank %}
+  

@@ -1,0 +1,43 @@
+<div class='container '>
+
+    <div class='md:w-1/2 w-full block mx-auto'>
+        
+        <div class='block mb-10'>
+            <h1 class='title'>Register</h1>
+        </div>
+        
+        {% form 'create_customer' %}
+
+            {% if form.errors %}
+                {% for field in form.errors %}
+                    <div class='mb-6 p-4 bg-red-100'>
+                        {% if field == 'form' %}
+                            <p class=''>{{ form.errors.messages[field] }}</p>
+                        {% else %}
+                            <p class=''>{{ form.errors.translated_fields[field] | capitalize }} {{ form.errors.messages[field] }}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <div class='block mb-2'>
+                <input type='email' name='customer[email]' placeholder='Email' class='input' />
+            </div>
+
+            <div class='block mb-6'>
+                <input type='password' name='customer[password]' placeholder='Password' class='input' />
+            </div>
+
+            <div class='block mb-6'>
+                <button type='submit' class='btn hover:bg-gray-300'>Sign Up</button>
+            </div>        
+        
+            <div class='block text-sm text-center'>
+                <p>Already have an account? <a class='underline' href='/account/login'>Login</a></p>
+            </div>
+            
+        {% endform %}
+      
+    </div>
+  
+</div>

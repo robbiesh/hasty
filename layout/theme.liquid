@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+
+  <title>{{ page_title }}</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="description" content="{{ page_description | escape }}">
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+
+  {{ 'stylesheet.css' | asset_url | stylesheet_tag }}
+
+  {{ content_for_header }}
+
+</head>
+<body>
+
+  <main role='main' class='min-h-screen flex flex-col w-full'>
+
+    {% section 'promo' %}
+    {% section 'header' %}
+
+    <div class='flex-1 {% if template != 'index' %} lg:py-20 py-10{% endif %}'>
+      {{ content_for_layout }}
+    </div>
+
+    {% section 'footer' %}
+  </main>
+
+  {% include 'scripts' %}
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<div>
+    <a href='{{ prod.url }}' class='block relative pt-80 w-full h-0 mb-4'>
+        {% assign image = prod.featured_image | img_url: '1000x' %}
+        {% assign image_mobile = prod.featured_image | img_url: '600x' %}
+
+        {% if prod.images.size > 1 %}
+            {% assign image_hover = prod.images[2] | img_url: '1000x' %}
+            {% assign image_hover_mobile = prod.images[2] | img_url: '600x' %}
+        {% else %}
+            {% assign image_hover = blank %}
+            {% assign image_hover_mobile = blank %}
+        {% endif %}
+
+        {% include 'image', image, image_mobile, image_hover, image_hover_mobile %}
+    </a>
+
+    <a href='{{ prod.url }}' class='block mb-4'>
+        <span class='block'>{{ prod.title }}</span>
+        {% include 'pricing', prod %}
+    </a>
+
+    {% assign is_first = true %}
+    {% capture colors %}
+        {% for product_option in prod.options_with_values %}
+            {% if product_option.name == 'Color' %}
+                {% for value in product_option.values %}
+                    <label>
+                        <input type='radio' name='{{ prod.handle }}' {% if is_first %}checked{% assign is_first = false %}{% endif %} value='{{ value }}' />
+                        {{ value }}
+                    </label>
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+    {% endcapture %}
+
+    {% if colors != blank %}
+    <div class='grid grid-cols-4 col-gap-4'>
+        {{ colors }}
+    </div>
+    {% endif %}
+
+</div>

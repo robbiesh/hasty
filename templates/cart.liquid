@@ -1,0 +1,153 @@
+<div class='container '>
+
+  <form action="/cart" method="post" novalidate>
+
+    <div class='w-full flex flex-wrap'>
+      {% if cart.item_count > 0 %}
+        <div class='lg:w-3/4 w-full lg:pr-12'>
+
+          <div class='w-full flex justify-between items-center pb-8'>
+            <div class='flex items-baseline'>
+              <h1 class='title'>Cart</h1>
+            </div>
+          </div>
+
+          <div class='w-full border-b py-2 text-gray uppercase flex text-xs md:text-sm'>
+            <div class='lg:w-1/6 w-3/12'>
+              <span>Item</span>
+            </div>
+            <div class='lg:w-2/6 w-4/12'>
+              <span>Details</span>
+            </div>
+            <div class='lg:w-1/6 hidden lg:block'>
+              <span>Price</span>
+            </div>
+            <div class='lg:w-1/6 w-2/12'>
+              <span>Quantity</span>
+            </div>
+            <div class='lg:w-1/6 w-3/12 text-right '>
+              <span>Total</span>
+            </div>
+          </div>
+
+            
+          <div class='block mb-8 text-sm lg:text-base'>
+
+              {% for item in cart.items %}
+                
+                <div class='w-full flex py-6 border-b flex-wrap'>
+                  <div class='lg:w-1/6 w-1/4 pr-4'>
+                      <a href="{{ item.url | within: collections.all }}" class='block relative pt-100 w-full'>
+                        <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}" class='w-full h-full object-cover inset-0 absolute'>
+                      </a>
+                  </div>
+
+                  <div class='lg:w-2/6 w-1/4 pr-4'>
+
+                    <div class='block mb-6'>
+                      <h2 class='mb-2'><a href="{{ item.url }}">{{ item.product.title }}</a></h2>
+                      {% unless item.product.has_only_default_variant %}
+                        <ul class='text-sm'>
+                          {% for option in item.options_with_values %}
+                            <li>{{ option.name }}: {{ option.value }}</li>
+                          {% endfor %}
+                        </ul>
+                      {% endunless %}
+                    </div>
+
+                    
+                    {% assign property_size = item.properties | size %}
+                    {% if property_size > 0 %}
+                      <div class='mt-2'>
+                        {% for p in item.properties %}
+                          {{ p.first }}
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+                    
+                    
+
+                  </div>
+                
+                  <div class='lg:w-1/2 w-1/2 flex'>
+                    <div class='lg:w-1/3 hidden lg:block'>
+                      {{ item.price | money }}
+                    </div>
+    
+                    <div class='lg:w-1/3 w-2/3 lg:text-left text-center'>
+                      <div class=''>
+                        <div class='block mb-2'>
+                          <input type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="1" max="">
+                        </div>
+    
+                        <div class='block'>
+                          <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class='text-xs text-gray underline'>Remove</a>
+                        </div>
+                      </div>
+                    </div>
+                      
+                    <div class='lg:w-1/3 w-1/3 text-sm lg:text-base text-right'>
+                        {{ item.final_price | money }}
+                    </div>
+                  </div>
+                  
+                </div>
+                  
+              {% endfor %}
+            </div>
+
+        </div>
+
+        <div class='lg:w-1/4 w-full'>
+
+          <div class='w-full lg:px-8 py-8 md:py-16 mb-4'>
+            <div class='flex w-full justify-between mb-6'>
+              <span class='text-20px font-gt-sectra'>Subtotal</span>
+              <span class='text-lg'>{{ cart.total_price | money }}</span>
+            </div>
+
+            <div class='w-full block mb-4'>
+              <button type="submit" name="update" class='btn text-sm lg:text-base hover:bg-gray-300 w-full'>Update</button>
+            </div>
+
+            <div class='w-full block mb-4'>
+              <button type="submit" name="checkout" class='btn text-sm lg:text-base hover:bg-gray-300 w-full' {% if has_no_delivery_product and has_delivery %}disabled style='opacity: 0.5'{% endif %}>Checkout</button>
+            </div>
+
+            {% comment %}
+            {% if then_we_have_a_problem %}
+              <div class='block mb-4 border  p-4 w-full'>
+                <p>You cannot order delivery to multiple locations in the same order. Please order each delivery separately.</p>
+              </div>
+            {% endif %}
+            {% endcomment %}
+
+            {% if has_no_delivery_product and has_delivery %}
+              <div class='block mb-4 border  p-4 w-full'>
+                <p>You don't have delivery service in your cart, but one of your products requires delivery. Go back to the product and add it to your cart again.</p>
+              </div>
+            {% endif %}
+            
+
+            {% if has_pickup and has_delivery %}
+              <div class='block mb-4 border  p-4 w-full'>
+                <p>You cannot have both delivery and pickup products in the same order.</p>
+              </div>
+            {% endif %}
+
+            <div>
+              <p class='text-xs leading-normal'>Shipping, taxes, and discounts will be calculated at checkout.</p>
+            </div>
+          </div>
+
+        </div>
+      {% else %}
+        <div class='text-center paragraphs py-12'>
+          <p>No items in your cart. <a href='/collections/all'>Back to shop.</a></p>
+        </div>
+      {% endif %}
+    </div>
+
+  </form>
+
+</div>

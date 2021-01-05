@@ -1,0 +1,208 @@
+{% schema %}
+    {
+        "name": "Reference",
+        "class": "reference",
+        "tag": "div",
+        "max_blocks": 20,
+        "settings": [
+            {
+                "type": "header",
+                "content": "Basic Input Setting Types"
+            },
+            {
+                "type": "paragraph",
+                "content": "text"
+            },
+            {
+                "type": "text",
+                "id": "text",
+                "label": "text",
+                "default": "value",
+                "info": "text",
+                "placeholder": "text"
+            },
+            {
+                "type": "textarea",
+                "id": "textarea",
+                "label": "text",
+                "default": "value",
+                "info": "text",
+                "placeholder": "text"
+            },
+            {
+                "type": "radio",
+                "id": "radio",
+                "label": "text",
+                "options": [
+                  { "value": "one", "label": "Radio one" },
+                  { "value": "two", "label": "Radio two" }
+                ],
+                "default": "one",
+                "info": "text"
+            },
+            {
+                "type": "select",
+                "id": "select",
+                "label": "text",
+                "options": [
+                  {
+                    "group": "value",
+                    "value": "1",
+                    "label": "1"
+                  },
+                  {
+                    "group": "value",
+                    "value": "2",
+                    "label": "2"
+                  }
+                ],
+                "default": "1",
+                "info": "text"
+            },
+            {
+                "type": "checkbox",
+                "id": "checkbox",
+                "label": "text",
+                "default": false,
+                "info": "text"
+            },
+            {
+                "type": "range",
+                "id": "range",
+                "min": 0,
+                "max": 100,
+                "step": 1,
+                "unit": "px",
+                "label": "Size",
+                "default": 50
+            },
+            {
+                "type": "header",
+                "content": "Specialized Input Setting Types"
+            },
+            {
+                "type": "paragraph",
+                "content": "text"
+            },
+            {
+                "type": "color",
+                "id": "color",
+                "label": "text",
+                "default": "#ffffff",
+                "info": "text"
+            },
+            {
+                "type": "font_picker",
+                "label": "text",
+                "id": "font_picker",
+                "info": "text",
+                "default": "helvetica_n4"
+            },
+            {
+                "type": "collection",
+                "id": "collection",
+                "label": "text",
+                "info": "text"
+            },
+            {
+                "type": "product",
+                "id": "product",
+                "label": "text",
+                "info": "text"
+            },
+            {
+                "type": "blog",
+                "id": "blog",
+                "label": "text",
+                "info": "text"
+            },
+            {
+                "type": "page",
+                "id": "page",
+                "label": "text",
+                "info": "text"
+            },
+            {
+                "type": "link_list",
+                "id": "link_list",
+                "label": "text",
+                "info": "text"
+            },
+            {
+                "id": "url",
+                "type": "url",
+                "label": "url"
+            },
+            {
+                "id": "video_url",
+                "type": "video_url",
+                "label": "Video URL",
+                "accept": ["youtube", "vimeo"],
+                "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+                "info": "text",
+                "placeholder": "text"
+            },
+            {
+                "type": "richtext",
+                "id": "richtext",
+                "label": "text",
+                "default": "<p>Default <em>richtext</em> <a href=\"https://example.com/\">content</a></p>"
+            },
+            {
+                "type": "html",
+                "id": "html_area",
+                "label": "Custom HTML",
+                "default": "<div><p>Some HTML content</p></div>"
+            },
+            {
+                "type": "article",
+                "id": "article",
+                "label": "Article to feature on the home page"
+            },
+            {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+            }
+        ],
+        "blocks": [
+            {
+                "type": "block",
+                "name": "Block",
+                "settings": [
+                    {
+                        "type": "text",
+                        "id": "title",
+                        "label": "Title"
+                    }
+                ]
+            }
+        ]
+    }
+{% endschema %}
+
+{% comment %}
+    // TAGS
+
+    article
+    aside
+    div
+    footer
+    header
+    section
+
+
+
+    // FOR HOMEPAGE SECTIONS
+
+    "presets": [
+        {
+            "name": "Banner"
+        }
+    ]
+
+
+    /admin/bulk?resource_name=ProductVariant&edit=&show=&ids=&app_context=&metafield_titles=&metafield_options=
+
+{% endcomment %}
+

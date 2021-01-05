@@ -1,0 +1,65 @@
+<section class='py-10 lg:py-20 relative w-full bg-black'>
+
+    <div class='container'>
+    
+        {% assign footer_menu = section.settings.footer_menu %}        
+
+        <div class='flex w-full flex-wrap'>
+            
+            <div class='lg:w-1/2 w-full mb-8 lg:mb-0'>
+                {% if linklists.footer.links.size > 0 %}
+                    <ul>
+                        {% for link in linklists.footer.links %}
+                        <li class='block mb-2'><a href="{{ link.url }}" class='text-white'>{{ link.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            <div class='lg:w-1/2 w-full'>
+
+                <div class='mb-4 block text-white'>
+                    <p>{{ section.settings.title }}</p>
+                </div>
+
+                {% form 'customer' %}
+                  {{ form.errors | default_errors }}
+                  {% if form.posted_successfully? %}
+                    <div class='p-4 border border-white w-full text-white'>
+                        <p class="note form-success">{{ 'general.newsletter_form.confirmation' | t }}</p>
+                    </div>
+                  {% else %}
+                    <div class='flex w-full'>
+                      <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="Enter your email" name="contact[email]" id="Email" class="input flex-auto" aria-label="Enter your email" autocorrect="off" autocapitalize="off">
+                      <input type="hidden" name="contact[tags]" value="newsletter">
+                      <input type="submit" class="btn cursor-pointer appearance-none bg-gray-400 text-black rounded-none border-none" name="subscribe" value="Submit">
+                    </div>
+                  {% endif %}
+                {% endform %}
+
+            </div>
+
+        </div>
+        
+    </div>
+
+</section>
+  
+{% schema %}
+    {
+      "name": "Footer",
+      "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Newsletter Title",
+            "default": "Sign up for our newsletter"
+        },
+        {
+            "type": "link_list",
+            "id": "footer",
+            "label": "Footer Menu",
+            "default": "footer"
+        }
+      ]
+    }
+  {% endschema %}

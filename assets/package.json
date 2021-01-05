@@ -1,0 +1,25 @@
+{
+  "name": "shopify-tailwindcss-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@shopify/theme-addresses": "^4.1.0",
+    "clean-css-cli": "^4.3.0",
+    "es6-promise": "^4.2.8",
+    "tailwindcss": "^2.0.2",
+    "uglify-js": "^3.12.4",
+    "unfetch": "^4.2.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.11.1",
+    "webpack-cli": "^4.3.1"
+  },
+  "scripts": {
+    "watch": "export NODE_ENV=development && npx webpack --config webpack.config.js --mode=development --watch",
+    "dev": "export NODE_ENV=development && sass stylesheet.scss stylesheet.css --sourcemap=none && npx tailwindcss-cli@latest build stylesheet.css -o stylesheet.css && npx webpack --config webpack.config.js --mode=development",
+    "build": "export NODE_ENV=production && npx webpack --config webpack.config.js --mode=production && sass stylesheet.scss stylesheet.css --sourcemap=none && npx tailwindcss-cli@latest build stylesheet.css -o stylesheet.css && cleancss -o stylesheet.css stylesheet.css"
+  },
+  "author": "Robbie Sherrard",
+  "license": "ISC"
+}
