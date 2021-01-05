@@ -18,7 +18,7 @@
   "scripts": {
     "watch": "export NODE_ENV=development && npx webpack --config webpack.config.js --mode=development --watch",
     "dev": "export NODE_ENV=development && sass stylesheet.scss stylesheet.css --sourcemap=none && npx tailwindcss-cli@latest build stylesheet.css -o stylesheet.css && npx webpack --config webpack.config.js --mode=development",
-    "build": "export NODE_ENV=production && npx webpack --config webpack.config.js --mode=production && sass stylesheet.scss stylesheet.css --sourcemap=none && npx tailwindcss-cli@latest build stylesheet.css -o stylesheet.css && cleancss -o stylesheet.css stylesheet.css"
+    "build": "export NODE_ENV=production && sass stylesheet.scss stylesheet.css --sourcemap=none && npx tailwindcss-cli@latest build stylesheet.css -o stylesheet.css && cleancss -o stylesheet.css stylesheet.css && npx webpack --config webpack.config.js --mode=production"
   },
   "author": "Robbie Sherrard",
   "license": "ISC"
