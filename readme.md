@@ -1,6 +1,6 @@
 # Hasty
 
-Hasty is a simple, low-JS, transferable starter for building a Shopify store.
+Hasty is a low-JS, easily transferable Shopify store starter.
 
 Why use Hasty?
 
