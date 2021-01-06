@@ -8,7 +8,7 @@ Why use Hasty?
 2. Contains all its build files within Shopify's assets folder – so when a new developer picks up a Hasty-built project, they can download the theme directly from the store, run the below commands to compile the JS and CSS, and make changes to the site. No need to transfer repos.
 3. Uses TailwindCSS (:raised_hands:), and has responsive skeletons built for most of Shopify's templates.
 
-This is very much a work-in-progress. Here are a few things on my to-do list:
+This is very much a work in progress. Here are a few things on my to-do list:
 
 - [ ] Custom note option on product
 - [ ] Custom note option on cart
