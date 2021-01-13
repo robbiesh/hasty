@@ -104,3 +104,13 @@ input[type="number"] {
 [data-line-count='3'] {
   flex-basis: 32%;
 }
+
+.modal {
+  display: none;
+}
+
+.modal--open {
+  .modal {
+    display: block;
+  }
+}

@@ -1,0 +1,35 @@
+<div class='w-full text-sm mt-4'>
+    <div class='mb-4'>
+        <p>Add a gift note</p>
+    </div>
+
+    
+    <div class='flex w-full mb-4'>
+        <div class='w-1/2 pr-2'>
+            <input type='text' placeholder="To: Name" class='border border-2 p-4 w-full'
+                name='properties[To]' />
+        </div>
+        <div class='w-1/2 pl-2'>
+            <input type='text' placeholder="From: Name" class='border border-2 p-4 w-full'
+                name='properties[From]' />
+        </div>
+    </div>
+
+    <div class='flex w-full mb-4'>
+        <textarea rows='8' class='border p-4 w-full'
+            placeholder='Gift Message (250 characters maximum)' maxlength="250"
+            name='properties[Message]'></textarea>
+    </div>
+
+    <div class='block w-full'>
+
+        <div class="flex items-center">
+            <input type="checkbox" id='gift_wrap' name='properties[Include gift wrap]' class='mr-2'>
+            <label for="gift_wrap">
+                <span>Include gift wrap</span>
+            </label>
+        </div>
+
+    </div>
+    
+</div>

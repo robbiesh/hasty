@@ -58,9 +58,18 @@
                     
                     {% assign property_size = item.properties | size %}
                     {% if property_size > 0 %}
-                      <div class='mt-2'>
+                      <div class='mt-2 text-sm'>
                         {% for p in item.properties %}
-                          {{ p.first }}
+
+                          {% if p.last == 'on' %}
+                            {% assign prop = 'true' %}
+                          {% elsif p.last == 'off' %}
+                            {% assign prop = 'false' %}
+                          {% else %}
+                            {% assign prop = p.last %}
+                          {% endif %}
+
+                          {{ p.first }}: {{ prop }}<br>
                         {% endfor %}
                       </div>
                     {% endif %}
@@ -96,11 +105,16 @@
               {% endfor %}
             </div>
 
+            <div class='block mt-4'>
+              <label for="CartNote" class='block mb-2'>Special instructions</label>
+              <textarea name="note" id="CartNote" class='border border-2 px-4 py-2 w-full'>{{ cart.note }}</textarea>
+            </div>
+
         </div>
 
         <div class='lg:w-1/4 w-full'>
 
-          <div class='w-full lg:px-8 py-8 md:py-16 mb-4'>
+          <div class='w-full py-8 md:py-16 mb-4'>
             <div class='flex w-full justify-between mb-6'>
               <span class='text-20px font-gt-sectra'>Subtotal</span>
               <span class='text-lg'>{{ cart.total_price | money }}</span>
@@ -111,29 +125,9 @@
             </div>
 
             <div class='w-full block mb-4'>
-              <button type="submit" name="checkout" class='btn text-sm lg:text-base hover:bg-gray-300 w-full' {% if has_no_delivery_product and has_delivery %}disabled style='opacity: 0.5'{% endif %}>Checkout</button>
+              <button type="submit" name="checkout" class='btn text-sm lg:text-base hover:bg-gray-300 w-full'>Checkout</button>
             </div>
 
-            {% comment %}
-            {% if then_we_have_a_problem %}
-              <div class='block mb-4 border  p-4 w-full'>
-                <p>You cannot order delivery to multiple locations in the same order. Please order each delivery separately.</p>
-              </div>
-            {% endif %}
-            {% endcomment %}
-
-            {% if has_no_delivery_product and has_delivery %}
-              <div class='block mb-4 border  p-4 w-full'>
-                <p>You don't have delivery service in your cart, but one of your products requires delivery. Go back to the product and add it to your cart again.</p>
-              </div>
-            {% endif %}
-            
-
-            {% if has_pickup and has_delivery %}
-              <div class='block mb-4 border  p-4 w-full'>
-                <p>You cannot have both delivery and pickup products in the same order.</p>
-              </div>
-            {% endif %}
 
             <div>
               <p class='text-xs leading-normal'>Shipping, taxes, and discounts will be calculated at checkout.</p>

@@ -10,14 +10,15 @@ Why use Hasty?
 
 This is very much a work in progress. Here are a few things on my to-do list:
 
-- [ ] Custom note option on product
-- [ ] Custom note option on cart
+- [x] Custom note option on product
+- [x] Custom note option on cart
 - [ ] Contact form
 - [ ] Gift card
-- [ ] Modal
+- [x] Modal
 - [ ] Quickview
 - [ ] AJAX cart
 - [ ] ADA compliance
+- [ ] Quantity selector
 
 I'm still on the fence about the JS setup, so that may change slightly.
 

@@ -1,0 +1,29 @@
+<div class='absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-40 w-64 bg-black p-12 text-center text-white'>
+    <div class=''>
+        <h1>Test Modal</h1>
+    </div>
+</div>
+
+<div class='js-modal-close z-30 absolute w-full h-full bg-red-50'>
+</div>
+
+
+{% schema %}
+{
+    "name": "Modal",
+    "tag": "div",
+    "class": "js-modal modal fixed min-h-screen min-w-full z-50 bg-white",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Modal Title"
+        },
+        {
+            "type": "textarea",
+            "id": "content",
+            "label": "Modal Content"
+        }
+    ]
+}
+{% endschema %}

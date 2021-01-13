@@ -104,19 +104,22 @@
             </select>
           </div>
 
-          <div class='block w-full'>
-            <div class='flex items-center justify-between mb-4 w-full'>
+          <div class='block w-full mb-4'>
+            <div class='flex items-center justify-between w-full'>
               <label for="Quantity" class=>Quantity</label>
               <input class='text-center p-2 lg:p-4 border w-20 max-w-100' type="number" id="Quantity" name="quantity" value="1" min="1">
             </div>
           </div>
-
 
           <button type="submit" name="add" class='btn text-sm lg:text-base hover:bg-gray-300 w-full js-add-to-cart'>Add to cart</button>
 
           <div class='js-sold-out' style='display: none'>
             <div>Sold out!<br><a href='' class='underline'>Enter your email here</a> to get notified when we're back in stock.</div>
           </div>
+
+          {% comment %}
+          {% include 'gift-option' %}
+          {% endcomment %}
 
         </form>
 
