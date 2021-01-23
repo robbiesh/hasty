@@ -9,7 +9,7 @@
 }
 
 .btn {
-  @apply text-sm py-4 px-8 text-center border-2  uppercase font-bold transition duration-300;
+  @apply text-sm py-4 px-8 text-center border-2  uppercase font-bold transition duration-300 rounded-none;
 }
 
 .title {

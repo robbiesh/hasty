@@ -31269,6 +31269,7 @@ video {
 }
 
 .btn {
+  border-radius: 0px;
   border-width: 2px;
   font-weight: 700;
   font-size: 0.875rem;

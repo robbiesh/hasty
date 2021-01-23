@@ -2,5 +2,6 @@
 assets/node_modules
 assets/package-lock.json
 .sass-cache
-addresses.min.js.LICENSE.txt
+assets/addresses.min.js.LICENSE.txt
+assets/global.min.js.LICENSE.txt
 config.yml
