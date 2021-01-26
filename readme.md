@@ -16,9 +16,10 @@ This is very much a work in progress. Here are a few things on my to-do list:
 - [ ] Gift card
 - [x] Modal
 - [ ] Quickview
-- [ ] AJAX cart
+- [x] AJAX cart
 - [ ] ADA compliance
 - [ ] Quantity selector
+- [ ] PDP slider
 
 I'm still on the fence about the JS setup, so that may change slightly.
 
