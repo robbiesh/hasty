@@ -31299,6 +31299,7 @@ video {
 
 .mm {
   transform: translateX(100%);
+  transition: all 0.3s;
 }
 
 .mm .has-megamenu .megamenu-link:after {
@@ -31320,6 +31321,19 @@ video {
 }
 
 .mm--open .mm {
+  transform: translateX(0);
+}
+
+.cart {
+  transform: translateX(100%);
+  transition: all 0.3s;
+}
+
+.cart--open {
+  overflow: hidden;
+}
+
+.cart--open .cart {
   transform: translateX(0);
 }
 
@@ -31385,6 +31399,15 @@ input[type="number"] {
 
 .modal--open .modal {
   display: block;
+}
+
+.cart-container {
+  opacity: 1;
+  transition: all 0.3s;
+}
+
+.cart--loading .cart-container {
+  opacity: 0.25;
 }
 
 @media (min-width: 640px) {

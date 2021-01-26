@@ -26,6 +26,7 @@
 
 .mm {
   transform: translateX(100%);
+  transition: all 0.3s;
 
   .has-megamenu {
       .megamenu-link {
@@ -52,6 +53,19 @@
   overflow: hidden;
 
   .mm {
+      transform: translateX(0);
+  }
+}
+
+.cart {
+  transform: translateX(100%);
+  transition: all 0.3s;
+}
+
+.cart--open {
+  overflow: hidden;
+
+  .cart {
       transform: translateX(0);
   }
 }
@@ -112,5 +126,16 @@ input[type="number"] {
 .modal--open {
   .modal {
     display: block;
+  }
+}
+
+.cart-container {
+  opacity: 1;
+  transition: all 0.3s;
+}
+
+.cart--loading {
+  .cart-container {
+    opacity: 0.25;
   }
 }

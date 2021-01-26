@@ -7,14 +7,17 @@
     "@shopify/theme-addresses": "^4.1.0",
     "clean-css-cli": "^4.3.0",
     "es6-promise": "^4.2.8",
+    "jquery": "^3.5.1",
     "js-cookie": "^2.2.1",
+    "rivets": "^0.9.6",
+    "shopify-cartjs": "^1.1.0",
     "tailwindcss": "^2.0.2",
     "uglify-js": "^3.12.4",
     "unfetch": "^4.2.0"
   },
   "devDependencies": {
-    "webpack": "^5.11.1",
-    "webpack-cli": "^4.3.1"
+    "webpack": "^5.17.0",
+    "webpack-cli": "^4.4.0"
   },
   "scripts": {
     "watch": "export NODE_ENV=development && npx webpack --config webpack.config.js --mode=development --watch",
