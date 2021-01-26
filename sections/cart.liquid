@@ -1,0 +1,70 @@
+<div class='cart-container h-full'>
+    <div class='container flex-auto overflow-y-scroll block flex flex-col h-full' data-cart-view="data-cart-view">
+        <div class='block flex justify-end py-4 border-b w-full'>
+            <button class='js-close-cart uppercase text-xs appearance-none'>
+                Close
+            </button>
+        </div>
+        
+        <div class='block py-4 border-b flex-auto w-full'>
+            <div>
+                <div rv-each-item="cart.items">
+                    <div class='block mb-8'>
+                        <div class='block'>
+                            <strong rv-text="item.title"></strong>
+                            <ul rv-hide="item.propertyArray | empty">
+                                <li rv-each-property="item.propertyArray < properties">
+                                    <small class="text-muted">{property.name}: {property.value}</small>
+                                </li>
+                            </ul>
+                        </div>
+                        <div rv-html="item.price | money Currency.currentCurrency"></div>
+                        <div>
+                            <a href="#" rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | minus 1">-</a>
+                            <span rv-text="item.quantity"></span>
+                            <a href="#" rv-data-cart-update="index | plus 1" rv-data-cart-quantity="item.quantity | plus 1">+</a>
+                        </div>
+                        <div>
+                            <a href="#" rv-data-cart-remove="index | plus 1">&times;</a>
+                        </div>
+                        <div rv-html="item.line_price | money Currency.currentCurrency"></div>
+                    </div>
+                </div>
+                <div rv-show="cart.item_count | lt 1">
+                    <td colspan="5">You don't have any items in your cart.</td>
+                </div>
+            
+            </div>
+        </div>
+
+        <div class='py-4 block w-full'>
+            <div class='mb-4' rv-show="cart.item_count | gt 0">
+                <div rv-html="cart.total_weight | weight_with_unit"></div>
+                <div rv-html="cart.total_price | money Currency.currentCurrency"></div>
+            </div>
+            <div class='block w-full'>
+                <a href='/checkout' class='w-full btn block'>Checkout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Cart",
+    "tag": "div",
+    "class": "js-cart cart fixed h-screen z-50 bg-white right-0 top-0 bottom-0 z-30 w-96",
+    "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Modal Title"
+        },
+        {
+            "type": "textarea",
+            "id": "content",
+            "label": "Modal Content"
+        }
+    ]
+}
+{% endschema %}

@@ -28,11 +28,16 @@
     </div>
 
     {% section 'modal' %}
-
+    {% section 'cart' %}
     {% section 'footer' %}
   </main>
 
   {% include 'scripts' %}
+
+  <!-- Initialise Cart.js once the page has loaded -->
+  <script class='js-cart-json' type='application/json'>
+    {{ cart | json }}
+  </script>
 
 </body>
 </html>
