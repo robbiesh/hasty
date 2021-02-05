@@ -1,7 +1,6 @@
 const webpack = require("webpack");
 
 module.exports = {
-  watch: true,
   entry: {
     global: "./global.js",
     account: "./account.js",

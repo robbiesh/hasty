@@ -1,3 +1,3 @@
-import './cart'
-import './mm'
+import "./cart";
+import "./mm";
 import "./modal";
