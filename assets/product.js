@@ -1,3 +1,17 @@
+import "jquery";
+import "slick-carousel";
+
+jQuery(document).ready(() => {
+  
+  $(".js-variants-slider").each(function () {
+    $(this).slick({
+      dots: true,
+      arrows: false,
+    });
+  });
+
+});
+
 var radios = document.querySelectorAll("[data-option-radio]");
 var selects = document.querySelectorAll("[data-option-select]");
 var main = document.querySelector("[data-option-main]");
@@ -53,6 +67,12 @@ function updateSelection(selected_variant) {
     }
   }
 
+  // update sliders
+  jQuery('.js-variants-slider').hide();
+  jQuery(".js-variants-slider[data-id='" + selected_variant.id + "']").show();
+  jQuery(".js-variants-slider[data-id='" + selected_variant.id + "']").slick("resize");
+
+
   // update pricing
 
   document.querySelector(".js-variant-price").innerHTML =
@@ -67,3 +87,28 @@ function updateSelection(selected_variant) {
     sold_out.style.display = "block";
   }
 }
+
+
+const decrease = document.querySelector(".js-counter-remove");
+const increase = document.querySelector(".js-counter-add");
+const quantity = document.querySelector(".js-counter-quantity");
+
+const min = parseInt(quantity.attributes.min.value);
+const max = parseInt(quantity.attributes.max.value);
+
+let count = parseInt(quantity.value);
+
+const set = (i) => {
+  count = Math.max(min, Math.min(i, max || 10000));
+  quantity.value = count;
+};
+
+decrease.addEventListener("click", (e) => {
+  e.preventDefault();
+  set(--count);
+});
+
+increase.addEventListener("click", (e) => {
+  e.preventDefault();
+  set(++count);
+});

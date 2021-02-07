@@ -5,8 +5,9 @@
 
     <div class='flex flex-wrap'>
 
-      <div class='w-full md:w-2/3'>
+      <div class='w-full md:w-1/2 relative'>
 
+        {% comment %}
         <div class='grid w-full grid-cols-2 gap-x-2 gap-y-2 w-full'>
           {% for image in product.images %}
 
@@ -21,10 +22,13 @@
 
           {% assign variant_image = '' %}
         </div>
+        {% endcomment %}
+
+        {% include 'variant-sliders' %}
 
       </div>
 
-      <div class='w-full md:w-1/3 lg:px-8 lg:py-0 py-8'>
+      <div class='w-full md:w-1/2 lg:px-8 lg:py-0 py-8'>
 
         <div class='block mb-4'>
           <h1 class='title'>{{ product.title }}</h1>
@@ -189,10 +193,4 @@
 
 <script class='js-variants-json' type='application/json'>
   {{- json | strip -}}
-</script>
-
-<script type='text/javascript'>
-
-  
-
 </script>

@@ -1,0 +1,30 @@
+{% assign i = 0 %}
+{% assign is_first = true %}
+
+{% for image in product.images %}
+
+    {% if image.attached_to_variant? or forloop.first %}
+        {% assign variant_id = image.variants[0].id %}
+        {% assign index = 0 %}
+
+        <div class='js-variants-slider' {% if is_first %}style='display:block;'{% assign is_first = false %}{% else %}style='display:none;'{% endif %} data-id='{{ variant_id }}'>
+    {% endif %}
+
+            <div class='w-full pt-150 h-0 relative' data-index='{{ index }}' tabindex="-1">
+                <picture>
+                    <source srcset="{{ image.src | img_url: '1200x' }}" media="(max-width: 767px)">
+                    <source srcset="{{ image.src | img_url: '2000x' }}" media="(min-width: 768px)">
+                    <img loading='lazy' class='block z-20 absolute inset-0 w-full h-full object-cover'
+                        src='{{ image.src | img_url: "2000x" }}' alt='{{ alt }}' />
+                </picture>
+
+            </div>
+
+            {% assign index = index | plus: 1 %}
+            {% assign i = i | plus: 1 %}
+
+    {% if product.images[i].attached_to_variant? or forloop.last %}
+        </div>
+    {% endif %}
+
+{% endfor %}

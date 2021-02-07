@@ -11,9 +11,11 @@
     "js-cookie": "^2.2.1",
     "rivets": "^0.9.6",
     "shopify-cartjs": "^1.1.0",
+    "slick-carousel": "^1.8.1",
     "tailwindcss": "^2.0.2",
     "uglify-js": "^3.12.4",
-    "unfetch": "^4.2.0"
+    "unfetch": "^4.2.0",
+    "watch": "^1.0.2"
   },
   "devDependencies": {
     "webpack": "^5.17.0",
