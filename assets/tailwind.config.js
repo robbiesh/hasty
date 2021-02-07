@@ -1,5 +1,3 @@
-console.log(process.env.NODE_ENV);
-
 module.exports = {
   purge: {
     enabled: process.env.NODE_ENV === "production",

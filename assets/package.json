@@ -20,7 +20,8 @@
     "webpack-cli": "^4.4.0"
   },
   "scripts": {
-    "watch": "export NODE_ENV=development && npx webpack --config webpack.config.js --mode=development --watch",
+    "watch:js": "export NODE_ENV=development && npx webpack --config webpack.config.js --mode=development --watch",
+    "watch:css": "watch 'sass stylesheet.scss stylesheet.css --sourcemap=none && npx tailwindcss-cli@latest build stylesheet.css -o stylesheet.css && export NODE_ENV=development' ./ --filter filter.js",
     "dev": "export NODE_ENV=development && sass stylesheet.scss stylesheet.css --sourcemap=none && npx tailwindcss-cli@latest build stylesheet.css -o stylesheet.css && npx webpack --config webpack.config.js --mode=development",
     "build": "export NODE_ENV=production && sass stylesheet.scss stylesheet.css --sourcemap=none && npx tailwindcss-cli@latest build stylesheet.css -o stylesheet.css && cleancss -o stylesheet.css stylesheet.css && npx webpack --config webpack.config.js --mode=production"
   },
