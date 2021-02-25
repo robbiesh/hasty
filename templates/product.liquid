@@ -1,3 +1,7 @@
+<script type='application/json' class='js-product-json'>
+  {{ product | json }}
+</script>
+
 {% assign current_variant = product.selected_or_first_available_variant %}
 
 <div class=''>
@@ -7,24 +11,16 @@
 
       <div class='w-full md:w-1/2 relative'>
 
-        {% comment %}
-        <div class='grid w-full grid-cols-2 gap-x-2 gap-y-2 w-full'>
-          {% for image in product.images %}
-
-            {% if image.attached_to_variant? %}
-              {% assign variant_image = image.id %}
-            {% endif %}
-
-            <div class='w-full pt-100 relative js-image' data-image='{{ variant_image }}' {% if variant_image != current_variant.image.id %}style='display:none;'{% endif %}>
-              <img src="{{ image.src | img_url: '800x' }}" alt="{{ image.alt | escape }}" class='w-full h-full inset-0 absolute object-cover' loading='lazy'>
-            </div>
-          {% endfor %}
-
-          {% assign variant_image = '' %}
-        </div>
-        {% endcomment %}
-
-        {% include 'variant-sliders' %}
+        <div class='md:grid md:grid-cols-12 md:gap-x-6 js-block transition duration-300' style='opacity: 0'>
+          <div class='col-span-2 hidden md:block'>
+              <div class='w-full js-thumbnails'></div>
+          </div>
+      
+          <div class='md:col-span-10 relative'>
+            <div class='js-arrows'></div>
+            <div class='w-full js-images relative'></div>
+          </div>
+      </div>
 
       </div>
 
@@ -36,6 +32,7 @@
 
         <div class='block mb-4'>
           <h2 class='js-variant-price'>{{ current_variant.price | money_without_trailing_zeros }}</h2>
+          <h2 class='ml-4 text-red line-through js-variant-compare-price' {% if current_variant.compare_at_price == blank %}style='display:none'{% endif %}>{{ current_variant.compare_at_price | money_without_trailing_zeros }}</h2>
         </div>
 
         <div class='mb-4'>{{ product.description }}</div>
