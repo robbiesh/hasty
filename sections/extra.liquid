@@ -4,15 +4,43 @@
     "settings": [
         {
             "type": "header",
-            "content": "Product Details"
+            "content": "Collections"
         },
         {
             "type": "paragraph",
-            "content": "Enter custom product details [here](/admin/bulk?resource_name=Product&edit=metafields.global.short_description:string,metafields.global.best_seller:boolean,metafields.global.tagline:string,metafields.global.weight:string,metafields.global.recommended_1:string,metafields.global.recommended_2:string,metafields.global.recommended_3:string)"
+            "content": "Upload your collections menu item image [here](/admin/settings/files), copy the URL, and input it [here](/admin/bulk?resource_name=Collection&edit=metafields.global.image:string)."
+        },
+        {
+          "type": "paragraph",
+          "content": "Set menu item highlighted [here](/admin/bulk?resource_name=Collection&edit=metafields.global.highlighted:boolean)."
+        },
+        {
+            "type": "header",
+            "content": "Pages"
         },
         {
             "type": "paragraph",
-            "content": "Enter custom variant details [here](/admin/bulk?resource_name=ProductVariant&edit=metafields.global.color:string)"
+            "content": "Upload your page menu item image [here](/admin/settings/files), copy the URL, and input it [here](/admin/bulk?resource_name=Page&edit=metafields.global.image:string)."
+        },
+        {
+          "type": "paragraph",
+          "content": "Set menu item highlighted [here](/admin/bulk?resource_name=Page&edit=metafields.global.highlighted:boolean)."
+        },
+        {
+            "type": "header",
+            "content": "Products"
+        },
+        {
+            "type": "paragraph",
+            "content": "Enter custom product details [here](/admin/bulk?resource_name=Product&edit=metafields.global.details:string,metafields.global.materials_care:string,metafields.global.shipping_returns:string,metafields.global.sale:boolean,metafields.global.new:boolean)"
+        },
+        {
+          "type": "header",
+          "content": "Variants"
+      },
+        {
+            "type": "paragraph",
+            "content": "Enter custom variant details [here](/admin/bulk?resource_name=ProductVariant&edit=metafields.global.color:string&show=image,full_title,variants)"
         }
     ]
   }
