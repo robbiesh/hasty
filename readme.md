@@ -20,6 +20,7 @@ This is very much a work in progress. Here are a few things on my to-do list:
 - [ ] ADA compliance
 - [ ] Quantity selector
 - [ ] PDP slider
+- [ ] Cart styling
 
 I'm still on the fence about the JS setup, so that may change slightly.
 
