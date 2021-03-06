@@ -1,0 +1,47 @@
+{% schema %}
+  {
+    "name": "Extra Content",
+    "settings": [
+        {
+            "type": "header",
+            "content": "Collections"
+        },
+        {
+            "type": "paragraph",
+            "content": "Upload your collections menu item image [here](/admin/settings/files), copy the URL, and input it [here](/admin/bulk?resource_name=Collection&edit=metafields.global.image:string)."
+        },
+        {
+          "type": "paragraph",
+          "content": "Set menu item highlighted [here](/admin/bulk?resource_name=Collection&edit=metafields.global.highlighted:boolean)."
+        },
+        {
+            "type": "header",
+            "content": "Pages"
+        },
+        {
+            "type": "paragraph",
+            "content": "Upload your page menu item image [here](/admin/settings/files), copy the URL, and input it [here](/admin/bulk?resource_name=Page&edit=metafields.global.image:string)."
+        },
+        {
+          "type": "paragraph",
+          "content": "Set menu item highlighted [here](/admin/bulk?resource_name=Page&edit=metafields.global.highlighted:boolean)."
+        },
+        {
+            "type": "header",
+            "content": "Products"
+        },
+        {
+            "type": "paragraph",
+            "content": "Enter custom product details [here](/admin/bulk?resource_name=Product&edit=metafields.global.details:string,metafields.global.materials_care:string,metafields.global.shipping_returns:string,metafields.global.sale:boolean,metafields.global.new:boolean)"
+        },
+        {
+          "type": "header",
+          "content": "Variants"
+      },
+        {
+            "type": "paragraph",
+            "content": "Enter custom variant details [here](/admin/bulk?resource_name=ProductVariant&edit=metafields.global.color:string&show=image,full_title,variants)"
+        }
+    ]
+  }
+{% endschema %}
