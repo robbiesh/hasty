@@ -142,8 +142,11 @@
 
           <div class='block w-full mb-4'>
             <div class='flex items-center justify-between w-full'>
-              <label for="Quantity" class=>Quantity</label>
-              <input class='text-center p-2 lg:p-4 border w-20 max-w-100' type="number" id="Quantity" name="quantity" value="1" min="1">
+              <div class="relative flex border border-solid mr-2 lg:mr-4 text-sm">
+                <button type="button" class="w-6 js-counter-remove outline-none">-</button>
+                <input type="number" name="quantity" value="1" min="1" max="" class="w-10 text-center m-0 appearance-none js-counter-quantity">
+                <button type="button" class="w-6 js-counter-add outline-none">+</button>
+              </div>
             </div>
           </div>
 

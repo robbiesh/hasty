@@ -1,0 +1,137 @@
+{% for block in section.blocks %}
+
+    {% assign tag = block.settings.title %}
+
+    {% if block.settings.type == 'category' %}
+        {% capture category %}
+            {{ category }}
+            <a class='block mb-1 {% if current_tags contains tag %}font-bold{% endif %}' href="{{ shop.url }}/collections/{{ collection.handle }}/{% if current_tags contains tag %}{% else %}{{ tag | handleize }}{% endif %}">{{ tag }}</a>
+        {% endcapture %}
+    {% endif %}
+
+    {% if block.settings.type == 'size' %}
+        {% capture size %}
+            {{ size }}
+            <a class='size-item block mb-1 mr-1 py-1 px-2 text-13px border border-black {% if current_tags contains tag %}active{% endif %}' href="{{ shop.url }}/collections/{{ collection.handle }}/{% if current_tags contains tag %}{% else %}{{ tag | handleize }}{% endif %}">{{ tag }}</a>
+        {% endcapture %}
+    {% endif %}
+
+
+    {% if block.settings.type == 'rise' %}
+        {% capture rise %}
+            {{ rise }}
+            <a class='block mb-1 {% if current_tags contains tag %}font-bold{% endif %}' href="{{ shop.url }}/collections/{{ collection.handle }}/{% if current_tags contains tag %}{% else %}{{ tag | handleize }}{% endif %}">{{ tag }}</a>
+        {% endcapture %}
+    {% endif %}
+
+    {% if block.settings.type == 'color' %}
+        {% capture color %}
+            {{ color }}
+            <a class='color-item mr-2 mb-2 inline-block {% if current_tags contains tag %}active{% endif %}' href="{{ shop.url }}/collections/{{ collection.handle }}/{% if current_tags contains tag %}{% else %}{{ tag | handleize }}{% endif %}">
+                <span class='label' data-option="{{ tag | handleize }}"></span>
+            </a>
+        {% endcapture %}
+    {% endif %}
+
+    {% if block.settings.type == 'fabric' %}
+        {% capture fabric %}
+            {{ fabric }}
+            <a class='block mb-1 {% if current_tags contains tag %}font-bold{% endif %}' href="{{ shop.url }}/collections/{{ collection.handle }}/{% if current_tags contains tag %}{% else %}{{ tag | handleize }}{% endif %}">{{ tag }}</a>
+        {% endcapture %}
+    {% endif %}
+
+{% endfor %}
+
+
+<div class='text-14px md:mb-0 mb-8'>
+
+
+    <div class='block w-full py-4 text-14px tracking-0_08px '>
+        <div class='font-bold'>Categories</div>
+        <div class='leading-5 mt-2'>
+            <p>{{ category }}</p>
+        </div>
+    </div>
+
+    <div class='block w-full py-4 tracking-14px tracking-0_08px '>
+        <div class='font-bold'>Size</div>
+        <div class='leading-5 mt-2 flex flex-wrap'>
+            {{ size }}
+        </div>
+    </div>
+
+    <div class='block w-full py-4 tracking-14px tracking-0_08px'>
+        <div class='font-bold'>Rise</div>
+        <div class='leading-5 mt-2'>
+            <p>{{ rise }}</p>
+        </div>
+    </div>
+
+    <div class='block w-full py-4 text-14px tracking-0_08px'>
+        <div class='font-bold'>Color</div>
+        <div class='leading-5 mt-3 flex flex-wrap'>
+            {{ color }}
+        </div>
+    </div>
+
+    <div class='block w-full py-4 text-14px tracking-0_08px'>
+        <div class='font-bold'>Fabric</div>
+        <div class='leading-5 mt-2'>
+            <p>{{ fabric }}</p>
+        </div>
+    </div>
+
+
+</div>
+
+{% schema %}
+    {
+      "name": "Filter",
+      "blocks": [
+        {
+            "type": "filters",
+            "name": "Filters",
+            "settings": [
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Tag"
+                },
+                {
+                    "type": "select",
+                    "id": "type",
+                    "label": "Type",
+                    "options": [
+                      {
+                        "group": "value",
+                        "value": "category",
+                        "label": "Category"
+                      },
+                      {
+                        "group": "value",
+                        "value": "size",
+                        "label": "Size"
+                      },
+                      {
+                        "group": "value",
+                        "value": "rise",
+                        "label": "Rise"
+                      },
+                      {
+                        "group": "value",
+                        "value": "color",
+                        "label": "Color"
+                      },
+                      {
+                        "group": "value",
+                        "value": "fabric",
+                        "label": "Fabric"
+                      }
+                    ],
+                    "default": "category"
+                }
+            ]
+        }
+      ]
+    }
+{% endschema %}
