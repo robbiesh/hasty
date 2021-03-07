@@ -12,9 +12,9 @@
                     {% assign image_mobile = block.settings.image | img_url: '1000x' %}
                 {% endif %}
 
-                {% assign image = block.settings.image | img_url: '1000x' %}
+                {% assign image_desktop = block.settings.image | img_url: '1000x' %}
 
-                {% include 'image', image, image_mobile %}
+                {% include 'image', image_desktop, image_mobile %}
 
                 <div class='absolute left-1/2 transform py-20 w-full container px-4 {% if block.settings.alignment == 'bottom' %}bottom-0{% else %}-translate-y-1/2 top-1/2{% endif %} -translate-x-1/2 text-center z-10 px-4 w-full'>
 

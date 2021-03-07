@@ -1,6 +1,6 @@
 <div>
     <a href='{{ prod.url }}' class='block relative pt-80 w-full h-0 mb-4'>
-        {% assign image = prod.featured_image | img_url: '1000x' %}
+        {% assign image_desktop = prod.featured_image | img_url: '1000x' %}
         {% assign image_mobile = prod.featured_image | img_url: '600x' %}
 
         {% if prod.images.size > 1 %}
@@ -11,7 +11,7 @@
             {% assign image_hover_mobile = blank %}
         {% endif %}
 
-        {% include 'image', image, image_mobile, image_hover, image_hover_mobile %}
+        {% include 'image', image_desktop, image_mobile, image_hover, image_hover_mobile %}
     </a>
 
     <a href='{{ prod.url }}' class='block mb-4'>

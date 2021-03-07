@@ -1,7 +1,7 @@
 <picture>
     <source srcset="{{ image_mobile }}" media="(max-width: 767px)">
-    <source srcset="{{ image }}" media="(min-width: 768px)">
-    <img loading="lazy" src="{{ image }}" class='w-full h-full object-cover inset-0 absolute' alt='' />
+    <source srcset="{{ image_desktop }}" media="(min-width: 768px)">
+    <img loading="lazy" src="{{ image_desktop }}" class='w-full h-full object-cover inset-0 absolute' alt='' />
 </picture>
 
 {% if image_hover != blank %}
@@ -12,7 +12,7 @@
     </picture>
 {% endif %}
 
-{% assign image = '' %}
+{% assign image_desktop = '' %}
 {% assign image_mobile = '' %}
 
 {% assign image_hover = '' %}
